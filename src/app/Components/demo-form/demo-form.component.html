@@ -3,10 +3,20 @@
   <div>
     <label for="last_name">Nom : </label>
     <input formControlName="last_name" name="last_name" id="last_name" type="text">
+    <div *ngIf="inscriptionForm.get('last_name')?.errors != null">
+      <!-- <p *ngFor="let i of inscriptionForm.get('last_name')?.errors">
+        {{i}}
+      </p> -->
+      {{inscriptionForm.get('last_name')?.errors | json}}
+    </div>
   </div>
   <div>
     <label for="first_name">Prénom : </label>
     <input formControlName="first_name" name="first_name" id="first_name" type="text">
+  </div>
+  <div>
+    <label for="phone">Téléphone : </label>
+    <input formControlName="phone" name="phone" id="phone" type="tel">
   </div>
   <div>
     <label for="birth_date">Date de naissance : </label>
@@ -29,6 +39,6 @@
   </fieldset>
   <div>
     <button type="reset">Remettre à zéro</button>
-    <button type="submit">Valider</button>
+    <button type="submit" [disabled]="!inscriptionForm.valid">Valider</button>
   </div>
 </form>
